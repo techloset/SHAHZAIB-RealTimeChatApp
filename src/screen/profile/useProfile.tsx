@@ -83,7 +83,11 @@ export default function UserProfile(props: UserProfileProps) {
             const userData = doc.data();
             setStatus(userData?.status || '');
           } else {
-            console.log('No such document!');
+            ToastAndroid.showWithGravity(
+              'No such document!',
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
           }
         })
         .catch(error => {
@@ -99,10 +103,18 @@ export default function UserProfile(props: UserProfileProps) {
         await currentUser.updateProfile({
           displayName: displayName,
         });
-        console.log('Display name updated successfully');
+        ToastAndroid.showWithGravity(
+          'Display name updated successfully',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
 
         await currentUser.updateEmail(email);
-        console.log('Email updated successfully');
+        ToastAndroid.showWithGravity(
+          'Email updated successfully',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
         if (selectedImage) {
           const userId = currentUser.uid;
           const imageFileName = `${userId}.jpg`;
@@ -116,15 +128,22 @@ export default function UserProfile(props: UserProfileProps) {
           await userRef.update({
             photoUrl: downloadURL,
           });
-
-          console.log('PhotoUrl updated successfully');
+          ToastAndroid.showWithGravity(
+            'PhotoUrl updated successfully',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+          );
         }
 
         const userRef = firestore().collection('users').doc(currentUser.uid);
         await userRef.update({
           status: status,
         });
-        console.log('Status successfully updated!');
+        ToastAndroid.showWithGravity(
+          'Status successfully updated!',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
       } catch (error) {
         console.error('Error updating profile:', error);
       }

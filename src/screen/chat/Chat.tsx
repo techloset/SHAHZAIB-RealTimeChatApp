@@ -123,7 +123,6 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
       .collection('messages')
       .add({
         ...myMsg,
-        // createdAt: firestore.FieldValue.serverTimestamp(),
         createAt: new Date().toLocaleTimeString(),
       });
 
@@ -135,45 +134,6 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
     const sortedIds = [userId1, userId2].sort();
     return sortedIds.join('_');
   };
-
-  // const imagePicker = () => {
-  //   ImagePicker.openPicker({
-  //     width: 300,
-  //     height: 400,
-  //     cropping: true,
-  //   }).then((image: {path: string}) => {
-  //     console.log(image);
-  //   });
-  // };
-
-  // const openCamera = async () =>{
-  //   const result = await launchCamera({mediaType: 'photo'});
-  //   console.log( result);
-  //   if (result.didCancel && result.didCancel == true){
-  //   } else {
-  //     setImageData(result);
-  //     upLaodImage(result);
-  //   }
-  // };
-
-  // const upLaodImage = async imageDataa =>{
-  //   const reference = storage().ref(imageDataa.assets[0].fileName);
-  //   const pathToFile = imageData.assets[0].url;
-  //   await reference.putFile(pathToFile);
-  //   const url = await storage()
-  //   .ref(imageData.assets[0].fileName)
-  //   .getDownLoadURL();
-  //   console.log('url',url);
-  //   setImageUrl(url);
-  // };
-
-  // ImageCropPicker.openCamera({
-  //   width: 300,
-  //   height: 400,
-  //   cropping: true,
-  // }).then(image => {
-  //   console.log(image);
-  // });
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <View style={styles.mnav}>
@@ -194,7 +154,6 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
         renderSend={props => (
           <View
             style={{flexDirection: 'row', alignItems: 'center', height: 50}}>
-            {/* First image: pinimg */}
             <TouchableOpacity
               onPress={() => {
                 ToastAndroid.showWithGravityAndOffset(
@@ -208,7 +167,6 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
               <Image source={pinimg} style={styles.pin} />
             </TouchableOpacity>
 
-            {/* Second image: filesimg */}
             <TouchableOpacity
               onPress={() => {
                 ToastAndroid.showWithGravityAndOffset(
@@ -223,15 +181,12 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
             </TouchableOpacity>
 
             <View style={{flex: 1}}>
-              {/* Text input */}
               <TextInput
                 style={{flex: 1}}
                 placeholder="Type your message..."
                 multiline={true}
               />
             </View>
-
-            {/* Third image: cameraimg */}
             <TouchableOpacity
               onPress={() => {
                 ToastAndroid.showWithGravityAndOffset(
@@ -245,7 +200,6 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
               <Image source={cameraimg} style={styles.camera} />
             </TouchableOpacity>
 
-            {/* Send button */}
             <Send
               {...props}
               containerStyle={{
@@ -325,7 +279,6 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
     alignItems: 'center',
-    // marginLeft: 24,
   },
   file: {
     height: 25,

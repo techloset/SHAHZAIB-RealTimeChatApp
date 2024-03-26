@@ -64,51 +64,6 @@ export const Signup = createAsyncThunk(
       });
   },
 );
-// export const SignupUser = createAsyncThunk(
-//   'auth/SignupUser',
-//   async (
-//     {displayName, email, password, confirmPassword}: SignUp,
-//     {dispatch},
-//   ) => {
-//     dispatch(setLoading(true));
-//     if (!displayName || !email || !password || !confirmPassword) {
-//       ToastAndroid.show('Please enter all fields', ToastAndroid.SHORT);
-//       return;
-//     }
-//     if (password !== confirmPassword) {
-//       ToastAndroid.show('Passwords do not match', ToastAndroid.SHORT);
-//       return;
-//     }
-//     return await auth()
-//       .createUserWithEmailAndPassword(email, password)
-//       .then(() => {
-//         auth().currentUser?.updateProfile({
-//           displayName: displayName,
-//         });
-//         firestore().collection('users').doc(auth()?.currentUser?.uid).set({
-//           displayName: displayName,
-//           email: email,
-//           photoUrl: 'https://via.placeholder.com/60x60',
-//           status: 'Hey there! I am using Real Time Chat..',
-//           password: password,
-//           confirmPassword: confirmPassword,
-//           uid: auth().currentUser?.uid,
-//         });
-//         dispatch(setLoading(false));
-//       })
-//       .catch(error => {
-//         if (error.code === 'auth/email-already-in-use') {
-//           // ToastAndroid.show('Email address already use!', ToastAndroid.SHORT);
-//         }
-//         if (error.code === 'auth/invalid-email') {
-//           ToastAndroid.show('Email address invalid!', ToastAndroid.SHORT);
-//         }
-//         dispatch(setLoading(false));
-//         ToastAndroid.show(error, ToastAndroid.SHORT);
-//       });
-//   },
-// );
-
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async ({email, password}: SignIn, {dispatch}) => {

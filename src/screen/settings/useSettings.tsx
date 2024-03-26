@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import {ToastAndroid} from 'react-native';
 
 interface UserData {
   userImageURL: string | null;
@@ -35,10 +36,18 @@ export default function useMSetting(): UserData {
             setDisplayName(name);
             setStatus(userStatus);
           } else {
-            console.log('User document does not exist');
+            ToastAndroid.showWithGravity(
+              'User document does not exist',
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
           }
         } else {
-          console.log('No current user found');
+          ToastAndroid.showWithGravity(
+            'No current user found',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+          );
         }
       } catch (error) {
         console.error("Error fetching current user's data:", error);

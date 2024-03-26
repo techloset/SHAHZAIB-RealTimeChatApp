@@ -17,39 +17,6 @@ export default function useSignIn() {
       ToastAndroid.show('Login failed', ToastAndroid.SHORT);
     }
   };
-  //
-  //
-  //   try {
-  //     await GoogleSignin.hasPlayServices();
-  //     const userInfo = await GoogleSignin.signIn();
-  //     console.log('Google sign in success:', userInfo);
-  //   } catch (error) {
-  //     console.error('Google sign in failed:', error);
-  //   }
-  // };
-  // export default function useSignIn() {
-  //   const [email, setEmail] = useState('');
-  //   const [password, setPassword] = useState('');
-
-  //   const handleLogin = async () => {
-  //     try {
-  //       if (!email || !password) {
-  //         Alert.alert('Email and password are required');
-  //         return;
-  //       }
-
-  //       const userCredential = await auth().signInWithEmailAndPassword(
-  //         email,
-  //         password,
-  //       );
-  //       console.log('User logged in:', userCredential.user);
-  //     } catch (error) {
-  //       console.error('Login failed:', error);
-  //       // Alert.alert('Login failed', error);
-  //     }
-  //   };
-  //
-  //
   return {
     email,
     setEmail,

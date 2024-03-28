@@ -60,7 +60,8 @@ export default function Contacts({navigation}: LoginScreenProps) {
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: '#050d30',
+    backgroundColor: '#040a27',
+    // backgroundColor: '#050d30',
   },
   img: {
     backgroundColor: ' rgba(255, 255, 255, 0.2)',
@@ -76,6 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginLeft: 20,
+    // Color: '#FFFFFF',
   },
   img2: {
     backgroundColor: ' rgba(255, 255, 255, 0.2)',

@@ -6,7 +6,7 @@ export interface Message {
   id: string;
   text: string;
   sender: 'user' | 'other';
-  // createdAt: Date;
+  createdAt: Date;
 }
 export interface SignUp {
   displayName: string;

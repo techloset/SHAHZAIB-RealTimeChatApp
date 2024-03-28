@@ -1,59 +1,69 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import useOnBording from './useOnBording';
+import authimg from '../../assets/Image/authscreen.png';
 import {LoginScreenProps} from '../../../types/Types';
 
 const OnBording = ({navigation}: LoginScreenProps) => {
   const {handleGoogleSignUp} = useOnBording();
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>Connect friends easily & quickly</Text>
-      <Text style={styles.heading2}>
-        Our chat app is the perfect way to stay connected with friends and
-        family.
-      </Text>
-      <View style={styles.imagep}>
-        <TouchableOpacity onPress={handleGoogleSignUp}>
-          <View style={styles.google}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/Image/Group438.png')}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.linep}>
-        <View style={styles.line} />
-        <View>
-          <Text style={styles.text}>OR</Text>
+    <ImageBackground source={authimg} style={styles.container}>
+      <View style={styles.container}>
+        <Text style={styles.heading}>Connect friends easily & quickly</Text>
+        <Text style={styles.heading2}>
+          Our chat app is the perfect way to stay connected with friends and
+          family.
+        </Text>
+        <View style={styles.imagep}>
+          <TouchableOpacity onPress={handleGoogleSignUp}>
+            <View style={styles.google}>
+              <Image
+                style={styles.image}
+                source={require('../../assets/Image/Group438.png')}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
-        <View style={styles.line} />
+        <View style={styles.linep}>
+          <View style={styles.line} />
+          <View>
+            <Text style={styles.text}>OR</Text>
+          </View>
+          <View style={styles.line} />
+        </View>
+        <View style={styles.buttonp}>
+          <TouchableOpacity
+            style={styles.touch}
+            onPress={() => {
+              navigation.navigate('signup');
+            }}>
+            <Text style={styles.btntext}>Sign up with mail</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.lasttextp}>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => {
+              navigation.navigate('signin');
+            }}>
+            <Text style={styles.lasttext}>Existing account? Log in</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.buttonp}>
-        <TouchableOpacity
-          style={styles.touch}
-          onPress={() => {
-            navigation.navigate('signup');
-          }}>
-          <Text style={styles.btntext}>Sign up with mail</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.lasttextp}>
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={() => {
-            navigation.navigate('signin');
-          }}>
-          <Text style={styles.lasttext}>Existing account? Log in</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#271b51',
+    resizeMode: 'cover',
     display: 'flex',
   },
   heading: {
@@ -61,10 +71,10 @@ const styles = StyleSheet.create({
     fontSize: 68,
     fontFamily: 'Poppins-Regular',
     width: 338,
+    height: 335,
     fontWeight: '400',
     lineHeight: 78,
-
-    marginTop: 85,
+    marginTop: 70,
     marginLeft: 26,
   },
 

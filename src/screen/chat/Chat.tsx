@@ -5,22 +5,21 @@ import {
   ToastAndroid,
   TouchableOpacity,
   View,
+  TextInput,
+  Image,
 } from 'react-native';
 import {Bubble, GiftedChat, InputToolbar, Send} from 'react-native-gifted-chat';
 import {launchCamera, ImagePickerResponse} from 'react-native-image-picker';
 import firestore from '@react-native-firebase/firestore';
-import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth';
 import {useSelector} from 'react-redux';
 import {ChatScreenProps, LoginScreenProps} from '../../../types/Types';
 import {RootState} from '../../store/store';
-import {Image} from 'react-native';
+
 import imgback from '../../assets/Image/Vector190.png';
 import pinimg from '../../assets/Image/Group.png';
 import filesimg from '../../assets/Image/group(2).png';
 import cameraimg from '../../assets/Image/camera01.png';
-import ImageCropPicker from 'react-native-image-crop-picker';
-import {TextInput} from 'react-native-gesture-handler';
 
 interface IMessage {
   senderId: string | undefined;
@@ -42,7 +41,6 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
   route,
   navigation,
 }) => {
-  const [imageData, setImageData] = useState<ImagePickerResponse | null>(null);
   const [imageUrl, setImageUrl] = useState<string>('');
   const [currentUser, setCurrentUser] = useState<any | null>(null);
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -77,10 +75,14 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
         if (snapshot) {
           const allMessages: IMessage[] = snapshot.docs.map(doc => {
             const data = doc.data();
+            const createdAt =
+              data.createdAt && data.createdAt.toDate
+                ? data.createdAt.toDate()
+                : new Date();
             return {
               _id: doc.id,
               text: data.text || '',
-              createdAt: data.createdAt ? data.createdAt.toDate() : new Date(),
+              createdAt,
               user: {
                 _id: data.user._id,
                 name: data.user.name,
@@ -97,7 +99,6 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
 
     return () => unsubscribe();
   }, [currentUser, user]);
-
   const onSend = async (newMessages: IMessage[]) => {
     const message = newMessages[0];
     const chatId = generateChatId(currentUser.uid, user?.uid || '');
@@ -112,11 +113,13 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
     setMessages(previousMessages =>
       GiftedChat.append(previousMessages, [myMsg]),
     );
+
     firestore().collection('chats').doc(randomId).set({
       senderId: auth().currentUser?.uid,
       receiverId: user?.uid,
       chatRoomId: randomId,
     });
+
     firestore()
       .collection('chats')
       .doc(chatId)
@@ -127,20 +130,17 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
       });
 
     setImageUrl('');
-    setImageData(null);
   };
 
   const generateChatId = (userId1: string, userId2: string) => {
     const sortedIds = [userId1, userId2].sort();
     return sortedIds.join('_');
   };
+
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <View style={styles.mnav}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <View style={styles.back}>
             <Image source={imgback} style={styles.imageback} />
           </View>
@@ -148,55 +148,34 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
         {user?.photoUrl && (
           <Image source={{uri: user.photoUrl}} style={styles.pro} />
         )}
-        <Text style={styles.name}>{user?.displayName}</Text>
+        <View>
+          <Text style={styles.name}>{user?.displayName}</Text>
+          <Text style={styles.status}>{user?.status}</Text>
+        </View>
       </View>
+
       <GiftedChat
+        renderActions={props => (
+          <TouchableOpacity>
+            <Image source={pinimg} style={styles.pin} />
+          </TouchableOpacity>
+        )}
         renderSend={props => (
           <View
             style={{flexDirection: 'row', alignItems: 'center', height: 50}}>
-            <TouchableOpacity
-              onPress={() => {
-                ToastAndroid.showWithGravityAndOffset(
-                  'Attach pin !',
-                  ToastAndroid.LONG,
-                  ToastAndroid.BOTTOM,
-                  25,
-                  50,
-                );
-              }}>
-              <Image source={pinimg} style={styles.pin} />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => {
-                ToastAndroid.showWithGravityAndOffset(
-                  'Attach files !',
-                  ToastAndroid.LONG,
-                  ToastAndroid.BOTTOM,
-                  25,
-                  50,
-                );
-              }}>
+            <TouchableOpacity>
               <Image source={filesimg} style={styles.file} />
             </TouchableOpacity>
 
             <View style={{flex: 1}}>
               <TextInput
                 style={{flex: 1}}
-                placeholder="Type your message..."
+                placeholder="write your message"
                 multiline={true}
               />
             </View>
-            <TouchableOpacity
-              onPress={() => {
-                ToastAndroid.showWithGravityAndOffset(
-                  'Attach camera !',
-                  ToastAndroid.LONG,
-                  ToastAndroid.BOTTOM,
-                  25,
-                  50,
-                );
-              }}>
+
+            <TouchableOpacity>
               <Image source={cameraimg} style={styles.camera} />
             </TouchableOpacity>
 
@@ -218,18 +197,15 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
         messages={messages}
         onSend={onSend}
         user={{_id: currentUser?.uid ?? -1}}
-        renderInputToolbar={props => {
-          return (
-            <InputToolbar
-              {...props}
-              containerStyle={{
-                backgroundColor: 'rgba(243, 246, 246, 1)',
-                borderRadius: 25,
-                width: 400,
-              }}
-            />
-          );
-        }}
+        renderInputToolbar={props => (
+          <InputToolbar
+            {...props}
+            containerStyle={{
+              backgroundColor: 'rgba(243, 246, 246, 1)',
+              borderRadius: 12,
+            }}
+          />
+        )}
         renderBubble={props => (
           <Bubble
             {...props}
@@ -262,23 +238,37 @@ const styles = StyleSheet.create({
     width: 20,
   },
   pro: {
-    height: 55,
-    width: 55,
-    marginTop: 2,
+    height: 44,
+    width: 44,
+    marginTop: 10,
     marginLeft: 10,
-    borderRadius: 27.5,
+    borderRadius: 31,
   },
   name: {
-    fontWeight: 'bold',
-    color: 'black',
-    marginTop: 4,
-    marginLeft: 10,
-    fontSize: 17,
+    height: 20,
+    marginTop: 13,
+    marginLeft: 7,
+    fontFamily: 'Poppins-Regular',
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 19,
+    color: '#000E08',
+  },
+  status: {
+    height: 22,
+    marginLeft: 7,
+    fontFamily: 'Poppins-Regular',
+    fontWeight: '400',
+    fontSize: 12,
+    lineHeight: 15,
+    color: '#000E08',
   },
   pin: {
     height: 25,
     width: 25,
     alignItems: 'center',
+    marginLeft: 10,
+    marginBottom: 10,
   },
   file: {
     height: 25,

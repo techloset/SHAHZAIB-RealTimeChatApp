@@ -129,7 +129,7 @@ export default function UserProfile(props: UserProfileProps) {
             photoUrl: downloadURL,
           });
           ToastAndroid.showWithGravity(
-            'PhotoUrl updated successfully',
+            'Photo updated successfully',
             ToastAndroid.SHORT,
             ToastAndroid.CENTER,
           );

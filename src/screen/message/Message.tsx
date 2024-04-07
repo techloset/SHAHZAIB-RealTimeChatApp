@@ -14,6 +14,7 @@ import auth from '@react-native-firebase/auth';
 import {Swipeable} from 'react-native-gesture-handler';
 import alert from '../../assets/Image/notification(2).png';
 import delte from '../../assets/Image/trash.png';
+import {ScrollView} from 'react-native';
 
 interface User {
   uid: string;

@@ -20,6 +20,7 @@ import imgback from '../../assets/Image/Vector190.png';
 import pinimg from '../../assets/Image/Group.png';
 import filesimg from '../../assets/Image/group(2).png';
 import cameraimg from '../../assets/Image/camera01.png';
+import {ScrollView} from 'react-native';
 
 interface IMessage {
   senderId: string | undefined;

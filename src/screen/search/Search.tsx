@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -74,7 +75,7 @@ const SearchComponent: React.FC<Props> = () => {
   };
 
   return (
-    <View>
+    <ScrollView>
       <View style={styles.place}>
         <Image
           source={require('../../assets/Image/Search1(2).png')}
@@ -95,7 +96,7 @@ const SearchComponent: React.FC<Props> = () => {
         renderItem={renderItem}
         keyExtractor={item => item.uid}
       />
-    </View>
+    </ScrollView>
   );
 };
 

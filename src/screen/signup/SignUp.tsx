@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import useSignUp from './useSignUp';
 import {LoginScreenProps} from '../../../types/Types';
+import Input from '../../[components]/Input';
+
 
 export default function SignUp({navigation}: LoginScreenProps) {
   const {
@@ -44,10 +46,16 @@ export default function SignUp({navigation}: LoginScreenProps) {
         </Text>
         <View style={{marginLeft: 15, marginTop: 70}}>
           <Text style={styles.txt}>Your name</Text>
-          <TextInput
+          {/* <TextInput
             placeholder="     Enter Your Name"
             value={displayName}
             onChangeText={txt => setDisplayName(txt)}
+          /> */}
+          <Input
+            placeholder="     Enter Your Name"
+            value={displayName}
+            onChangeText={setDisplayName}
+            secureTextEntry={false}
           />
           <View style={styles.linep2}>
             <View style={styles.line}></View>
@@ -55,10 +63,17 @@ export default function SignUp({navigation}: LoginScreenProps) {
 
           <View style={{marginTop: 30}}>
             <Text style={styles.txt}>Your email</Text>
-            <TextInput
+            {/* <TextInput
               placeholder="     Enter Your email"
               value={email}
               onChangeText={txt => setEmail(txt)}
+            /> */}
+            <Input
+              placeholder="     Enter Your email"
+              value={email}
+              onChangeText={setEmail}
+              secureTextEntry={false}
+            keyboardType="email-address"
             />
             <View style={styles.linep2}>
               <View style={styles.line}></View>
@@ -67,11 +82,17 @@ export default function SignUp({navigation}: LoginScreenProps) {
 
           <View style={{marginTop: 10}}>
             <Text style={styles.txt}>Passward</Text>
-            <TextInput
+            {/* <TextInput
               placeholder="     Enter Passward"
               secureTextEntry={true}
               value={password}
               onChangeText={txt => setPassword(txt)}
+            /> */}
+            <Input
+              placeholder="     Enter Passward"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={true}
             />
             <View style={styles.linep2}>
               <View style={styles.line}></View>
@@ -79,10 +100,16 @@ export default function SignUp({navigation}: LoginScreenProps) {
 
             <View style={{marginTop: 30}}>
               <Text style={styles.txt}> Confirm Passward</Text>
-              <TextInput
+              {/* <TextInput
                 placeholder="     Enter Confirm Passward"
                 value={confirmPassword}
                 onChangeText={txt => setConfirmPassword(txt)}
+                secureTextEntry={true}
+              /> */}
+              <Input
+                placeholder="     Enter Confirm Passward"
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
                 secureTextEntry={true}
               />
               <View style={styles.linep2}>

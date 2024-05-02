@@ -11,6 +11,7 @@ import {
 import useProfile from './useProfile';
 import aditbtn from '../../assets/Image/Frame49.png';
 import {LoginScreenProps} from '../../../types/Types';
+import Input from '../../[components]/Input';
 
 interface User {
   displayName?: string;
@@ -52,31 +53,47 @@ export default function Profile({navigation}: LoginScreenProps) {
         </TouchableOpacity>
         <View style={styles.name}>
           <Text>Your name</Text>
-          <TextInput
+          {/* <TextInput
             placeholder={currentUser?.displayName || 'Enter your name'}
             value={displayName}
             onChangeText={setDisplayName}
+          /> */}
+          <Input
+            placeholder={currentUser?.displayName || 'Enter your name'}
+            value={displayName}
+            onChangeText={setDisplayName}
+            secureTextEntry={false}
           />
         </View>
         <View style={styles.line}></View>
 
         <View style={styles.email}>
           <Text>Your email</Text>
-          <TextInput
+          {/* <TextInput
             placeholder={currentUser?.email || 'Enter your email'}
             value={email}
             onChangeText={setEmail}
-          />
+          /> */}
+          <Input
+            placeholder={currentUser?.email || 'Enter your email'}
+            value={email}
+            onChangeText={setEmail}
+            secureTextEntry={false}/>
         </View>
         <View style={styles.line}></View>
 
         <View style={styles.status}>
           <Text>Your status</Text>
-          <TextInput
+          {/* <TextInput
             placeholder={(currentUser as User)?.status || 'Never give up 💪'}
             value={status}
             onChangeText={setStatus}
-          />
+          /> */}
+          <Input
+            placeholder={(currentUser as User)?.status || 'Never give up 💪'}
+            value={status}
+            onChangeText={setStatus}
+            secureTextEntry={false}/>
         </View>
         <View style={styles.line}></View>
 

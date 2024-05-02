@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {LoginScreenProps} from '../../../types/Types';
 import useSignIn from './useSignIn';
+import Input from '../../[components]/Input';
 
 const SignIn = ({navigation}: LoginScreenProps) => {
   const {email, setEmail, password, setPassword, handleLogin} = useSignIn();
@@ -50,10 +51,17 @@ const SignIn = ({navigation}: LoginScreenProps) => {
         </View>
         <View style={{marginLeft: 15}}>
           <Text style={styles.youremail}>Your email</Text>
-          <TextInput
+          {/* <TextInput
             placeholder="     Email"
             value={email}
             onChangeText={text => setEmail(text)}
+            keyboardType="email-address"
+          /> */}
+          <Input
+            placeholder="     Email"
+            value={email}
+            onChangeText={setEmail}
+            secureTextEntry={false}
             keyboardType="email-address"
           />
           <View style={styles.linep2}>
@@ -61,12 +69,17 @@ const SignIn = ({navigation}: LoginScreenProps) => {
           </View>
           <View style={{marginTop: 30}}>
             <Text style={styles.passward}>Passward</Text>
-            <TextInput
+            {/* <TextInput
               placeholder="     Password"
               value={password}
               onChangeText={text => setPassword(text)}
               secureTextEntry={true}
-            />
+            /> */}
+            <Input
+              placeholder="     Password"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={true}/>
             <View style={styles.linep2}>
               <View style={styles.line}></View>
             </View>

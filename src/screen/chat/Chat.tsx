@@ -36,7 +36,7 @@ interface IMessage {
   image?: string;
 }
 
-const randomId = Math.random().toString(36).substring(1, 15);
+// const randomId = Math.random().toString(36).substring(1, 15);
 
 const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
   route,
@@ -115,10 +115,10 @@ const Chat: React.FC<ChatScreenProps & LoginScreenProps> = ({
       GiftedChat.append(previousMessages, [myMsg]),
     );
 
-    firestore().collection('chats').doc(randomId).set({
+    firestore().collection('chats').doc(chatId).set({
       senderId: auth().currentUser?.uid,
       receiverId: user?.uid,
-      chatRoomId: randomId,
+      chatRoomId: chatId,
     });
 
     firestore()

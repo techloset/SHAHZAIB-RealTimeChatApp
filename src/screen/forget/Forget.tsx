@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import useForget from './useForget';
 import {LoginScreenProps} from '../../../types/Types';
+import Input from '../../[components]/Input';
 
 export default function SignupForget({navigation}: LoginScreenProps) {
   const {email, setEmail, handleForgotPassword} = useForget();
@@ -31,9 +32,16 @@ export default function SignupForget({navigation}: LoginScreenProps) {
       </Text>
       <View style={{marginTop: 50, marginLeft: 10}}>
         <Text style={styles.youremail}>Your email</Text>
-        <TextInput
+        {/* <TextInput
           placeholder="     Enter Your email"
           onChangeText={setEmail}
+        /> */}
+        <Input
+          placeholder="     Enter Your email"
+          value={email}
+          onChangeText={setEmail}
+          secureTextEntry={false}
+          keyboardType="email-address"
         />
         <View style={styles.linep2}>
           <View style={styles.line}></View>

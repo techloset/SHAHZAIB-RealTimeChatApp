@@ -3,6 +3,7 @@ import {View, TextInput, StyleSheet, Text, Image} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import useChangePassword from './useChangePassward';
 import {LoginScreenProps} from '../../../types/Types';
+import Input from '../../[components]/Input';
 
 const ChangePassword = ({navigation}: LoginScreenProps) => {
   const {
@@ -32,28 +33,44 @@ const ChangePassword = ({navigation}: LoginScreenProps) => {
         <View style={styles.card}>
           <View style={styles.name}>
             <Text style={styles.heading}>Current Password</Text>
-            <TextInput
+            {/* <TextInput
               secureTextEntry={true}
               value={currentPassword}
-              onChangeText={text => setCurrentPassword(text)}></TextInput>
+              onChangeText={text => setCurrentPassword(text)}></TextInput> */}
+              <Input 
+              secureTextEntry={true}
+              value={currentPassword}
+              onChangeText={text => setCurrentPassword(text)}
+              placeholder='   Enter Your Password'
+              />
           </View>
           <View style={styles.line}></View>
 
           <View style={styles.email}>
             <Text style={styles.heading}>New Password</Text>
-            <TextInput
+            {/* <TextInput
               secureTextEntry={true}
               value={newPassword}
-              onChangeText={text => setNewPassword(text)}></TextInput>
+              onChangeText={text => setNewPassword(text)}></TextInput> */}
+              <Input 
+              secureTextEntry={true}
+              value={newPassword}
+              onChangeText={text => setNewPassword(text)}
+              placeholder='   Enter Your New Password'/>
           </View>
           <View style={styles.line}></View>
 
           <View style={styles.status}>
             <Text style={styles.heading}>Confirm New Password</Text>
-            <TextInput
+            {/* <TextInput
               secureTextEntry={true}
               value={confirmPassword}
-              onChangeText={text => setConfirmPassword(text)}></TextInput>
+              onChangeText={text => setConfirmPassword(text)}></TextInput> */}
+              <Input 
+              secureTextEntry={true}
+              value={confirmPassword}
+              onChangeText={text => setConfirmPassword(text)}
+              placeholder='   Enter Your Confirm Password'/>
           </View>
           <View style={styles.line}></View>
 

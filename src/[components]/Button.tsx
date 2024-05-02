@@ -2,11 +2,15 @@ import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-export default function Button() {
+interface ButtonProps {
+  name: string;
+  onPress: () => void;
+}
+export default function Button({name,onPress} :ButtonProps) {
   return (
     <View style={styles.buttonp}>
-      <TouchableOpacity style={styles.touch}>
-        <Text style={styles.btntext}>Sign up with mail</Text>
+      <TouchableOpacity style={styles.touch} onPress={onPress}>
+        <Text style={styles.btntext}>{name}</Text>
       </TouchableOpacity>
     </View>
   );

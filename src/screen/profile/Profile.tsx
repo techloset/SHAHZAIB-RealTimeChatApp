@@ -12,6 +12,7 @@ import useProfile from './useProfile';
 import aditbtn from '../../assets/Image/Frame49.png';
 import {LoginScreenProps} from '../../../types/Types';
 import Input from '../../[components]/Input';
+import Button from '../../[components]/Button';
 
 interface User {
   displayName?: string;
@@ -69,40 +70,26 @@ export default function Profile({navigation}: LoginScreenProps) {
 
         <View style={styles.email}>
           <Text>Your email</Text>
-          {/* <TextInput
-            placeholder={currentUser?.email || 'Enter your email'}
-            value={email}
-            onChangeText={setEmail}
-          /> */}
           <Input
             placeholder={currentUser?.email || 'Enter your email'}
             value={email}
             onChangeText={setEmail}
-            secureTextEntry={false}/>
+            secureTextEntry={false}
+          />
         </View>
         <View style={styles.line}></View>
 
         <View style={styles.status}>
           <Text>Your status</Text>
-          {/* <TextInput
-            placeholder={(currentUser as User)?.status || 'Never give up 💪'}
-            value={status}
-            onChangeText={setStatus}
-          /> */}
           <Input
             placeholder={(currentUser as User)?.status || 'Never give up 💪'}
             value={status}
             onChangeText={setStatus}
-            secureTextEntry={false}/>
+            secureTextEntry={false}
+          />
         </View>
         <View style={styles.line}></View>
-
-        <TouchableOpacity
-          style={styles.btn}
-          activeOpacity={0.8}
-          onPress={handleUpdateProfile}>
-          <Text style={styles.btnt}>Update Profile</Text>
-        </TouchableOpacity>
+        <Button name="Update Profile"  onPress={handleUpdateProfile}/>
       </View>
     </ScrollView>
   );

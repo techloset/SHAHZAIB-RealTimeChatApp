@@ -10,6 +10,7 @@ import {
 import useForget from './useForget';
 import {LoginScreenProps} from '../../../types/Types';
 import Input from '../../[components]/Input';
+import Button from '../../[components]/Button';
 
 export default function SignupForget({navigation}: LoginScreenProps) {
   const {email, setEmail, handleForgotPassword} = useForget();
@@ -26,16 +27,12 @@ export default function SignupForget({navigation}: LoginScreenProps) {
         />
       </TouchableOpacity>
 
-      <Text style={styles.headng1}>Forget Passward</Text>
+      <Text style={styles.headng1}>Forget Password</Text>
       <Text style={styles.heading2}>
         Welcome back! Sign in using your social account or email to continue us
       </Text>
       <View style={{marginTop: 50, marginLeft: 10}}>
         <Text style={styles.youremail}>Your email</Text>
-        {/* <TextInput
-          placeholder="     Enter Your email"
-          onChangeText={setEmail}
-        /> */}
         <Input
           placeholder="     Enter Your email"
           value={email}
@@ -48,9 +45,7 @@ export default function SignupForget({navigation}: LoginScreenProps) {
         </View>
       </View>
       <View style={styles.buttonp}>
-        <TouchableOpacity style={styles.touch} onPress={handleForgotPassword}>
-          <Text style={styles.btntext}>Create an account</Text>
-        </TouchableOpacity>
+        <Button name='Forget Password' onPress={handleForgotPassword}/>
       </View>
     </ScrollView>
   );
@@ -95,7 +90,7 @@ const styles = StyleSheet.create({
   buttonp: {
     alignContent: 'center',
     alignItems: 'center',
-    marginTop: 300,
+    marginTop: 250,
   },
   touch: {
     width: 327,

@@ -4,6 +4,7 @@ import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import useChangePassword from './useChangePassward';
 import {LoginScreenProps} from '../../../types/Types';
 import Input from '../../[components]/Input';
+import Button from '../../[components]/Button';
 
 const ChangePassword = ({navigation}: LoginScreenProps) => {
   const {
@@ -33,10 +34,6 @@ const ChangePassword = ({navigation}: LoginScreenProps) => {
         <View style={styles.card}>
           <View style={styles.name}>
             <Text style={styles.heading}>Current Password</Text>
-            {/* <TextInput
-              secureTextEntry={true}
-              value={currentPassword}
-              onChangeText={text => setCurrentPassword(text)}></TextInput> */}
               <Input 
               secureTextEntry={true}
               value={currentPassword}
@@ -48,10 +45,6 @@ const ChangePassword = ({navigation}: LoginScreenProps) => {
 
           <View style={styles.email}>
             <Text style={styles.heading}>New Password</Text>
-            {/* <TextInput
-              secureTextEntry={true}
-              value={newPassword}
-              onChangeText={text => setNewPassword(text)}></TextInput> */}
               <Input 
               secureTextEntry={true}
               value={newPassword}
@@ -62,10 +55,6 @@ const ChangePassword = ({navigation}: LoginScreenProps) => {
 
           <View style={styles.status}>
             <Text style={styles.heading}>Confirm New Password</Text>
-            {/* <TextInput
-              secureTextEntry={true}
-              value={confirmPassword}
-              onChangeText={text => setConfirmPassword(text)}></TextInput> */}
               <Input 
               secureTextEntry={true}
               value={confirmPassword}
@@ -73,13 +62,7 @@ const ChangePassword = ({navigation}: LoginScreenProps) => {
               placeholder='   Enter Your Confirm Password'/>
           </View>
           <View style={styles.line}></View>
-
-          <TouchableOpacity
-            style={styles.btn}
-            activeOpacity={0.8}
-            onPress={handleChangePassword}>
-            <Text style={styles.btnt}>Update Profile</Text>
-          </TouchableOpacity>
+          <Button name='Change Password' onPress={handleChangePassword}/>
         </View>
       </View>
     </ScrollView>

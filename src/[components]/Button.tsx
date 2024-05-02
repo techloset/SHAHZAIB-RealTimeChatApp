@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   touch: {
     width: 327,
     height: 48,
-    backgroundColor: '#79809a',
+    backgroundColor: '#273364',
     borderRadius: 20,
     marginBottom: 50,
   },

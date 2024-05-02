@@ -11,6 +11,7 @@ import {
 import {LoginScreenProps} from '../../../types/Types';
 import useSignIn from './useSignIn';
 import Input from '../../[components]/Input';
+import Button from '../../[components]/Button';
 
 const SignIn = ({navigation}: LoginScreenProps) => {
   const {email, setEmail, password, setPassword, handleLogin} = useSignIn();
@@ -51,12 +52,6 @@ const SignIn = ({navigation}: LoginScreenProps) => {
         </View>
         <View style={{marginLeft: 15}}>
           <Text style={styles.youremail}>Your email</Text>
-          {/* <TextInput
-            placeholder="     Email"
-            value={email}
-            onChangeText={text => setEmail(text)}
-            keyboardType="email-address"
-          /> */}
           <Input
             placeholder="     Email"
             value={email}
@@ -69,26 +64,19 @@ const SignIn = ({navigation}: LoginScreenProps) => {
           </View>
           <View style={{marginTop: 30}}>
             <Text style={styles.passward}>Passward</Text>
-            {/* <TextInput
-              placeholder="     Password"
-              value={password}
-              onChangeText={text => setPassword(text)}
-              secureTextEntry={true}
-            /> */}
             <Input
               placeholder="     Password"
               value={password}
               onChangeText={setPassword}
-              secureTextEntry={true}/>
+              secureTextEntry={true}
+            />
             <View style={styles.linep2}>
               <View style={styles.line}></View>
             </View>
           </View>
         </View>
         <View style={styles.buttonp}>
-          <TouchableOpacity style={styles.touch} onPress={handleLogin}>
-            <Text style={styles.btntext}>Log in</Text>
-          </TouchableOpacity>
+          <Button name="Log in" onPress={handleLogin}/>
         </View>
       </View>
 
@@ -173,7 +161,7 @@ const styles = StyleSheet.create({
   buttonp: {
     alignContent: 'center',
     alignItems: 'center',
-    marginTop: 150,
+    marginTop: 50,
   },
   touch: {
     width: 327,
@@ -217,6 +205,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 14,
     letterSpacing: 0.1,
+    marginTop: 50,
   },
 });
 
